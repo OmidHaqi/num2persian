@@ -9,4 +9,8 @@
 * add conver latin num to persian num
 * fix some Bugs
 
+## 0.0.2 
+
+* fix some bugs 
+
 

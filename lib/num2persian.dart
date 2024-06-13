@@ -170,8 +170,7 @@ String getFarsiNumberInt(int number) {
   const fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
   String numberStr = number.toString();
   for (var element in en) {
-    numberStr =
-        numberStr.replaceAll(element, fa[en.indexOf(element)]);
+    numberStr = numberStr.replaceAll(element, fa[en.indexOf(element)]);
   }
 
   return numberStr;
@@ -188,6 +187,7 @@ String tomanToRialFun(String toman) {
   int rialInt = tomanInt * 10;
   return rialInt.toString();
 }
+
 extension PersianNumbers on String {
   String toPersianLetter() {
     return num2Persian(this);

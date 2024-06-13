@@ -17,7 +17,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  num2persian: ^0.0.2
+  num2persian: ^0.0.3
 ```
 
 Then, run `flutter pub get` to fetch the package.
@@ -185,31 +185,133 @@ This example creates a simple Flutter app with a `NumberDisplay` widget that sho
 
 ## API
 
-### Extensions on `String`
+### num2persian
 
-- `String toPersianLetter()`: Converts the numeric string to its Persian word equivalent.
-- `String toToman()`: Converts the numeric string to Persian words followed by "تومان".
-- `String toRial()`: Converts the numeric string to Persian words followed by "ریال".
-- `String toPersianNumber()`: Converts the numeric string to Persian numerals.
-- `String formatWithCommas()`: Formats the numeric string with commas.
-- `String rialToToman()`: Converts the numeric string from Rial to Toman.
-- `String tomanToRial()`: Converts the numeric string from Toman to Rial.
+#### `String num2Persian(String number)`
+
+Converts a numeric string to its Persian word equivalent.
+
+```dart
+String number = "123";
+print(num2Persian(number)); // Output: یکصد و بیست و سه
+```
+
+### num2persian.PersianNumbers
+
+#### `String toPersianLetter()`
+
+Converts the numeric string to its Persian word equivalent.
+
+```dart
+String number = "123";
+print(number.toPersianLetter()); // Output: یکصد و بیست و سه
+```
+
+#### `String toToman()`
+
+Converts the numeric string to Persian words followed by "تومان".
+
+```dart
+String number = "12345";
+print(number.toToman()); // Output: دوازده هزار و سیصد و چهل و پنج تومان
+```
+
+#### `String toRial()`
+
+Converts the numeric string to Persian words followed by "ریال".
+
+```dart
+String number = "12345";
+print(number.toRial()); // Output: دوازده هزار و سیصد و چهل و پنج ریال
+```
+
+#### `String formatWithCommas()`
+
+Formats the numeric string with commas.
+
+```dart
+String number = "1234567";
+print(number.formatWithCommas()); // Output: 1,234,567
+```
+
+#### `String toPersianNumber()`
+
+Converts the numeric string to Persian numerals.
+
+```dart
+String number = "1234567";
+print(number.toPersianNumber()); // Output: ۱۲۳۴۵۶۷
+```
 
 ### Extensions on `int`
 
-- `String toPersianLetter()`: Converts the integer to its Persian word equivalent.
-- `String toToman()`: Converts the integer to Persian words followed by "تومان".
-- `String toRial()`: Converts the integer to Persian words followed by "ریال".
-- `String toPersianNumberInt()`: Converts the integer to Persian numerals.
-- `String formatWithCommas()`: Formats the integer with commas.
-- `String rialToToman()`: Converts the integer from Rial to Toman.
-- `String tomanToRial()`: Converts the integer from Toman to Rial.
+#### `String toPersianLetter()`
+
+Converts the integer to its Persian word equivalent.
+
+```dart
+int number = 123;
+print(number.toPersianLetter()); // Output: یکصد و بیست و سه
+```
+
+#### `String toToman()`
+
+Converts the integer to Persian words followed by "تومان".
+
+```dart
+int number = 12345;
+print(number.toToman()); // Output: دوازده هزار و سیصد و چهل و پنج تومان
+```
+
+#### `String toRial()`
+
+Converts the integer to Persian words followed by "ریال".
+
+```dart
+int number = 12345;
+print(number.toRial()); // Output: دوازده هزار و سیصد و چهل و پنج ریال
+```
+
+#### `String toPersianNumberInt()`
+
+Converts the integer to Persian numerals.
+
+```dart
+int number = 1234567;
+print(number.toPersianNumberInt()); // Output: ۱۲۳۴۵۶۷
+```
+
+#### `String formatWithCommas()`
+
+Formats the integer with commas.
+
+```dart
+int number = 1234567;
+print(number.formatWithCommas()); // Output: 1,234,567
+```
+
+#### `String rialToToman()`
+
+Converts the integer from Rial to Toman.
+
+```dart
+int rial = 1234567;
+print(rial.rialToToman()); // Output: 123456
+```
+
+#### `String tomanToRial()`
+
+Converts the integer from Toman to Rial.
+
+```dart
+int toman = 123456;
+print(toman.tomanToRial()); // Output: 1234560
+```
 
 ## Contributing
 
 Contributions are welcome! Please submit a pull request or create an issue for any bugs or feature requests.
 
-
 ## License
 
-This project is licensed under the Apache License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
