@@ -9,7 +9,7 @@
 * add conver latin num to persian num
 * fix some Bugs
 
-## 0.0.2 
+## 0.0.3 
 
 * fix some bugs 
 
