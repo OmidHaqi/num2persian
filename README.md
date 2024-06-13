@@ -1,24 +1,23 @@
 # num2persian
-<img src="https://i.ibb.co/28NDFyC/example.gif" width="200" alt="screenshots">
-
 
 `num2persian` is a Dart library for converting numbers to their Persian word equivalents. This can be useful for displaying numbers in a more readable format in Persian-language applications, such as writing out monetary amounts in words.
 
 ## Features
 
 - Convert numbers to Persian words.
-- Support for both `int` and `String` types.
 - Convert numbers to Persian monetary units (Toman, Rial).
 - Format numbers with commas.
+- Convert numbers to Persian numerals.
+- Convert Rial to Toman and vice versa.
+- Support for both `int` and `String` types.
 
 ## Installation
-
 
 Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  num2persian: ^0.0.1
+  num2persian: ^0.0.2
 ```
 
 Then, run `flutter pub get` to fetch the package.
@@ -81,9 +80,59 @@ int number = 1234567;
 print(number.formatWithCommas()); // Output: 1,234,567
 ```
 
+#### Convert Number to Persian Numerals
+
+For `String` type:
+
+```dart
+String number = "1234567";
+print(number.toPersianNumber()); // Output: ۱۲۳۴۵۶۷
+```
+
+For `int` type:
+
+```dart
+int number = 1234567;
+print(number.toPersianNumberInt()); // Output: ۱۲۳۴۵۶۷
+```
+
+#### Convert Rial to Toman
+
+For `String` type:
+
+```dart
+String rial = "1234567";
+print(rial.rialToToman()); // Output: 123456
+```
+
+For `int` type:
+
+```dart
+int rial = 1234567;
+print(rial.rialToToman()); // Output: 123456
+```
+
+#### Convert Toman to Rial
+
+For `String` type:
+
+```dart
+String toman = "123456";
+print(toman.tomanToRial()); // Output: 1234560
+```
+
+For `int` type:
+
+```dart
+int toman = 123456;
+print(toman.tomanToRial()); // Output: 1234560
+```
+
+## Flutter Usage
 
 You can use `num2persian` in your Flutter applications to display numbers in Persian words within your UI components.
 
+### Example Flutter App
 
 Here's a simple example of a Flutter app using `num2persian`:
 
@@ -123,6 +172,9 @@ class NumberDisplay extends StatelessWidget {
         Text('As Toman: ${number.toToman()}'),
         Text('As Rial: ${number.toRial()}'),
         Text('With Commas: ${number.formatWithCommas()}'),
+        Text('In Persian Numerals: ${number.toPersianNumber()}'),
+        Text('Rial to Toman: ${number.rialToToman()}'),
+        Text('Toman to Rial: ${number.tomanToRial()}'),
       ],
     );
   }
@@ -138,18 +190,25 @@ This example creates a simple Flutter app with a `NumberDisplay` widget that sho
 - `String toPersianLetter()`: Converts the numeric string to its Persian word equivalent.
 - `String toToman()`: Converts the numeric string to Persian words followed by "تومان".
 - `String toRial()`: Converts the numeric string to Persian words followed by "ریال".
+- `String toPersianNumber()`: Converts the numeric string to Persian numerals.
 - `String formatWithCommas()`: Formats the numeric string with commas.
+- `String rialToToman()`: Converts the numeric string from Rial to Toman.
+- `String tomanToRial()`: Converts the numeric string from Toman to Rial.
 
 ### Extensions on `int`
 
 - `String toPersianLetter()`: Converts the integer to its Persian word equivalent.
 - `String toToman()`: Converts the integer to Persian words followed by "تومان".
 - `String toRial()`: Converts the integer to Persian words followed by "ریال".
+- `String toPersianNumberInt()`: Converts the integer to Persian numerals.
 - `String formatWithCommas()`: Formats the integer with commas.
+- `String rialToToman()`: Converts the integer from Rial to Toman.
+- `String tomanToRial()`: Converts the integer from Toman to Rial.
 
 ## Contributing
 
 Contributions are welcome! Please submit a pull request or create an issue for any bugs or feature requests.
+
 
 ## License
 
