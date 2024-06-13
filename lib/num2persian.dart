@@ -4,13 +4,79 @@ const String delimiter = ' و ';
 const String zero = 'صفر';
 
 const List<List<String>> letters = [
-  ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'],
-  ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده', 'بیست'],
-  ['', '', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'],
-  ['', 'یکصد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'],
-  ['', ' هزار', ' میلیون', ' میلیارد', ' بیلیون', ' بیلیارد', ' تریلیون', ' تریلیارد',
-    'کوآدریلیون', ' کادریلیارد', ' کوینتیلیون', ' کوانتینیارد', ' سکستیلیون', ' سکستیلیارد', ' سپتیلیون',
-    'سپتیلیارد', ' اکتیلیون', ' اکتیلیارد', ' نانیلیون', ' نانیلیارد', ' دسیلیون', ' دسیلیارد'],
+  [
+    '',
+    'یک',
+    'دو',
+    'سه',
+    'چهار',
+    'پنج',
+    'شش',
+    'هفت',
+    'هشت',
+    'نه',
+  ],
+  [
+    'ده',
+    'یازده',
+    'دوازده',
+    'سیزده',
+    'چهارده',
+    'پانزده',
+    'شانزده',
+    'هفده',
+    'هجده',
+    'نوزده',
+    'بیست'
+  ],
+  [
+    '',
+    '',
+    'بیست',
+    'سی',
+    'چهل',
+    'پنجاه',
+    'شصت',
+    'هفتاد',
+    'هشتاد',
+    'نود',
+  ],
+  [
+    '',
+    'یکصد',
+    'دویست',
+    'سیصد',
+    'چهارصد',
+    'پانصد',
+    'ششصد',
+    'هفتصد',
+    'هشتصد',
+    'نهصد'
+  ],
+  [
+    '',
+    ' هزار',
+    ' میلیون',
+    ' میلیارد',
+    ' بیلیون',
+    ' بیلیارد',
+    ' تریلیون',
+    ' تریلیارد',
+    'کوآدریلیون',
+    ' کادریلیارد',
+    ' کوینتیلیون',
+    ' کوانتینیارد',
+    ' سکستیلیون',
+    ' سکستیلیارد',
+    ' سپتیلیون',
+    'سپتیلیارد',
+    ' اکتیلیون',
+    ' اکتیلیارد',
+    ' نانیلیون',
+    ' نانیلیارد',
+    ' دسیلیون',
+    ' دسیلیارد'
+  ],
 ];
 
 List<String> prepareNumber(String num) {
@@ -64,14 +130,14 @@ String threeNumbersToLetter(String num) {
   return out.join(delimiter);
 }
 
-String num2Persian(String num) {
-  if (int.parse(num) == 0) {
+String num2Persian(String number) {
+  if (int.parse(number) == 0) {
     return zero;
   }
-  if (num.length > 18) {
+  if (number.length > 18) {
     return 'خارج از محدوده';
   }
-  List<String> spitedNumber = prepareNumber(num);
+  List<String> spitedNumber = prepareNumber(number);
   List<String> output = [];
   int splitLength = spitedNumber.length;
   for (int i = 0; i < splitLength; i++) {
@@ -83,11 +149,45 @@ String num2Persian(String num) {
   }
   return output.join(delimiter);
 }
+
 String formatWithCommasHelper(String num) {
   RegExp exp = RegExp(r'(\d)(?=(\d{3})+(?!\d))');
   return num.replaceAllMapped(exp, (Match match) => '${match.group(1)},');
 }
 
+String getFarsiNumber(String number) {
+  const en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  for (var element in en) {
+    number = number.replaceAll(element, fa[en.indexOf(element)]);
+  }
+
+  return number;
+}
+
+String getFarsiNumberInt(int number) {
+  const en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const fa = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  String numberStr = number.toString();
+  for (var element in en) {
+    numberStr =
+        numberStr.replaceAll(element, fa[en.indexOf(element)]);
+  }
+
+  return numberStr;
+}
+
+String rialToTomanFun(String rial) {
+  int rialInt = int.parse(rial);
+  int tomanInt = rialInt ~/ 10;
+  return tomanInt.toString();
+}
+
+String tomanToRialFun(String toman) {
+  int tomanInt = int.parse(toman);
+  int rialInt = tomanInt * 10;
+  return rialInt.toString();
+}
 extension PersianNumbers on String {
   String toPersianLetter() {
     return num2Persian(this);
@@ -101,8 +201,20 @@ extension PersianNumbers on String {
     return '${num2Persian(this)} ریال';
   }
 
+  String toPersianNumber() {
+    return getFarsiNumber(this);
+  }
+
   String formatWithCommas() {
     return formatWithCommasHelper(this);
+  }
+
+  String rialToToman() {
+    return rialToTomanFun(this);
+  }
+
+  String tomanToRial() {
+    return tomanToRialFun(this);
   }
 }
 
@@ -119,7 +231,19 @@ extension PersianNumbersInt on int {
     return '${num2Persian(toString())} ریال';
   }
 
+  String toPersianNumberInt() {
+    return getFarsiNumberInt(this);
+  }
+
   String formatWithCommas() {
     return formatWithCommasHelper(toString());
+  }
+
+  String rialToToman() {
+    return rialToTomanFun(toString());
+  }
+
+  String tomanToRial() {
+    return tomanToRialFun(toString());
   }
 }
