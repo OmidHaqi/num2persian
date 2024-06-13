@@ -1,3 +1,12 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Describe initial release.
+
+## 0.0.2 
+
+* add rialToToman
+* add tomanToRial
+* add conver latin num to persian num
+* fix some Bugs
+
+
