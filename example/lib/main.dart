@@ -48,6 +48,16 @@ class PersianNumberConverterWidgetState
 
   String _formatWithCommas = '';
 
+  String _persianNumber = '';
+
+  String _rialToToman = '';
+
+  String _tomanToRial = '';
+
+  String _tomanInWords = '';
+
+  String _rialInWords = '';
+
   void _convertNumber() {
     setState(() {
       if (_controller.text.isEmpty) {
@@ -55,12 +65,23 @@ class PersianNumberConverterWidgetState
         _persianText = '';
         _tomanText = '';
         _rialText = '';
+        _persianNumber = '';
+        _rialToToman = '';
+        _tomanToRial = '';
+        _tomanInWords = '';
+        _rialInWords = '';
       } else {
         String inputNumber = _controller.text;
         _persianText = inputNumber.toPersianLetter();
         _tomanText = inputNumber.toToman();
         _rialText = inputNumber.toRial();
         _formatWithCommas = inputNumber.formatWithCommas();
+        _persianNumber = inputNumber.toPersianNumber();
+        _rialToToman = inputNumber.rialToToman();
+        _tomanToRial = inputNumber.tomanToRial();
+
+        _tomanInWords = _rialToToman.toPersianLetter();
+        _rialInWords = _tomanToRial.toPersianLetter();
       }
     });
   }
@@ -94,18 +115,41 @@ class PersianNumberConverterWidgetState
             const SizedBox(height: 10),
             Text(
               _tomanText,
-              style: GoogleFonts.vazirmatn(color: Colors.blue,
-              fontSize: 20),
+              style: GoogleFonts.vazirmatn(color: Colors.blue, fontSize: 20),
             ),
             const SizedBox(height: 10),
             Text(
               _rialText,
-              style: GoogleFonts.vazirmatn(color: Colors.amber,
-              fontSize: 20),
+              style: GoogleFonts.vazirmatn(color: Colors.amber, fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "تبدیل تومان به ریال: $_tomanToRial ریال",
+              style: GoogleFonts.vazirmatn(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "تبدیل ریال به تومان: $_rialToToman تومان",
+              style: GoogleFonts.vazirmatn(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "تبدیل تومان به ریال: $_rialInWords ریال",
+              style: GoogleFonts.vazirmatn(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "تبدیل ریال به تومان: $_tomanInWords تومان",
+              style: GoogleFonts.vazirmatn(fontSize: 20),
             ),
             const SizedBox(height: 10),
             Text(
               _formatWithCommas,
+              style: GoogleFonts.vazirmatn(fontSize: 20),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              _persianNumber,
               style: GoogleFonts.vazirmatn(fontSize: 20),
             )
           ],
