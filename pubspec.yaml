@@ -1,6 +1,6 @@
 name: num2persian
 description: "A Flutter package that converts numbers into Persian letters in the easiest possible way"
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/OmidHaqi/num2persian
 
 environment:
